@@ -14,6 +14,7 @@ family product tools
 - 2.parse weixin msg
 - 3.auto sort image and infomation
 - 4.upload sorted pack to server use to display
+- 5.GUI design
 
 *trouble:*
 - weixin API
