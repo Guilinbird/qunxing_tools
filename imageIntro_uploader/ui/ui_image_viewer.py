@@ -7,59 +7,135 @@
 @Time    :   2020/4/5 3:57
 @Desc    :
 '''
-
-from PyQt5.QtWidgets import QMainWindow, QWidget
-
-
-class ImageViewer(QMainWindow):
-    """
-    图片查看器窗口
-    """
-
-    def __init__(self):
-        super(ImageViewer, self).__init__()
-        self.initUI()
-
-    def initUI(self):
-        pass
-
-
-from PyQt5.QtWidgets import QMenuBar, QMenu, QAction, QLineEdit, QStyle, QFormLayout, QVBoxLayout, QWidget, \
-    QApplication, QHBoxLayout, QPushButton, QMainWindow, QGridLayout, QLabel
-
+import os
 import sys
+from PyQt5.QtCore import Qt, QSize
+from PyQt5.QtGui import QPixmap, QImage
+from PyQt5.QtWidgets import QMainWindow, QSplitter, QApplication, QHBoxLayout, QGroupBox, QLabel, QVBoxLayout, QWidget, \
+    QSizePolicy, QFileDialog, qApp
 
 
-class WindowClass(QMainWindow):
+class ImageConverter(QMainWindow):
+    """
+    image converter window
+    """
 
     def __init__(self, parent=None):
-        super(WindowClass, self).__init__(parent)
-        self.layout = QHBoxLayout()
-        self.menubar = self.menuBar()  # 获取窗体的菜单栏
+        super(ImageConverter, self).__init__(parent)
+        self.cwd = os.getcwd()
+        self.root = ''
+        self._initMenu()
+        self._initUI()
 
-        self.file = self.menubar.addMenu("系统菜单")
-        self.file.addAction("New File")
+    def _initMenu(self):
+        self.menu = self.menuBar()
+        self.fileMenu = self.menu.addMenu('文件')
+        self.editMenu = self.menu.addMenu('编辑')
+        self.viewMenu = self.menu.addMenu('视图')
+        self.toolMenu = self.menu.addMenu('工具')
 
-        self.save = QAction("Save", self)
-        self.save.setShortcut("Ctrl+S")  # 设置快捷键
-        self.file.addAction(self.save)
+        # self.fileMenu.addAction('导入图片', self.slotImportImg, Qt.CTRL+Qt.Key_I)
+        self.fileMenu.addAction('导入图片', self.slotImportImg, 'Ctrl+i')
+        self.fileMenu.addAction('导出图片', self.slotOutputImg, 'Ctrl+o')
+        self.fileMenu.addAction('退出工具', qApp.quit, 'Ctrl+q')
 
-        self.edit = self.file.addMenu("Edit")
-        self.edit.addAction("copy")  # Edit下这是copy子项
-        self.edit.addAction("paste")  # Edit下设置paste子项
+    def _initUI(self):
+        vlayMain = QVBoxLayout()
+        vlayMain.setContentsMargins(0, 0, 0, 0)
+        self.splitter = QSplitter(Qt.Horizontal)
+        self.splitter.setMinimumSize(1200, 800)
 
-        self.quit = QAction("Quit", self)  # 注意如果改为：self.file.addMenu("Quit") 则表示该菜单下必须柚子菜单项；会有>箭头
-        self.file.addAction(self.quit)
-        self.file.triggered[QAction].connect(self.processtrigger)
-        self.setLayout(self.layout)
-        self.setWindowTitle("Menu Demo")
+        self._initTab()
+        self._initDisplay()
+        self._initAttr()
+        vlayMain.addWidget(self.wgTab)
+        vlayMain.addWidget(self.splitter)
+        self.setCentralWidget(QWidget(self))
+        self.centralWidget().setLayout(vlayMain)
 
-    def processtrigger(self, qaction):
-        print(qaction.text() + " is triggered!")
+    def _initTab(self):
+        self.wgTab = QWidget()
+        self.wgTab.setFixedHeight(20)
+        self.wgTab.setStyleSheet("background: #99FF99")
+        hlayTab = QHBoxLayout(self.wgTab)
+        hlayTab.setContentsMargins(0, 0, 0, 0)
+
+    def slotImportImg(self):
+        if self.root != '':
+            self.cwd = self.root
+        path, type = QFileDialog.getOpenFileName(self, '选择图片', self.cwd, '*.jpg;*.png;*.bmp')
+        self.root = os.path.split(path)[0]
+        if os.path.exists(path):
+            self.slotOpenImage(path)
+
+    def slotOutputImg(self):
+        print('导出图片')
+
+    def _initDisplay(self):
+        self.wgDisplay = QWidget(self.splitter)
+        vlayDisplay = QHBoxLayout()
+        vlayDisplay.setContentsMargins(0, 0, 0, 0)
+        self._initToolBar()
+        vlayDisplay.addWidget(self.wgToolBar)
+
+        self.labelShower = QLabel()
+        self.labelShower.setMinimumSize(600, 600)
+        self.labelShower.setStyleSheet("background: #3366CC")
+        vlayDisplay.addWidget(self.labelShower)
+        self.wgDisplay.setLayout(vlayDisplay)
+
+    def _initToolBar(self):
+        self.wgToolBar = QWidget()
+        self.wgToolBar.setFixedWidth(20)
+        self.wgToolBar.setStyleSheet("background: #FF6633")
+        vlayTool = QVBoxLayout(self.wgToolBar)
+        vlayTool.setContentsMargins(0, 0, 0, 0)
+
+    def _initAttr(self):
+        rightGroupBox = QGroupBox(self.splitter)
+        rightGroupBox.setMinimumWidth(300)
+        rightvlay = QVBoxLayout()
+        rightGroupBox.setLayout(rightvlay)
+        rightvlay.addWidget(QGroupBox('基本尺寸'))
+        rightvlay.addWidget(QGroupBox('详细尺寸'))
+
+    def slotOpenImage(self, imgPath):
+        img = QImage(imgPath)
+        img_w, img_h = img.width(), img.height()
+        painter_w, painter_h = self.labelShower.size().width(), self.labelShower.size().height()
+
+        w_scale = h_scale = 1
+        if img_w > painter_w:
+            w_scale = painter_w / img_w
+        if img_h > painter_h:
+            h_scale = painter_h / img_h
+        scale = min(w_scale, h_scale)
+
+        scaleImg = QPixmap.fromImage(img.scaled(QSize(int(img_w * scale), int(img_h * scale)), Qt.IgnoreAspectRatio))
+        self.labelShower.setPixmap(scaleImg)
+
+
+class OpenImageCard(QLabel):
+    """
+    open image label
+    """
+
+    def __init__(self, imagePath):
+        super(OpenImageCard, self).__init__()
+        self.imagePath = imagePath
+        self.checkPath()
+        self.setAttr()
+
+    def checkPath(self):
+        if os.path.exists(self.imagePath) and os.path.splitext(self.imagePath)[1] in ['.jpg', '.png', '.bmp']:
+            return
+
+    def setAttr(self):
+        self.setObjectName(self.imagePath)
 
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    win = WindowClass()
+    win = ImageConverter()
     win.show()
     sys.exit(app.exec_())
