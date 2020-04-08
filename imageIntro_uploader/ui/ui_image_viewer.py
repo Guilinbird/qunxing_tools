@@ -9,10 +9,10 @@
 '''
 import os
 import sys
-from PyQt5.QtCore import Qt, QSize
+from PyQt5.QtCore import Qt, QSize, pyqtSignal
 from PyQt5.QtGui import QPixmap, QImage
 from PyQt5.QtWidgets import QMainWindow, QSplitter, QApplication, QHBoxLayout, QGroupBox, QLabel, QVBoxLayout, QWidget, \
-    QSizePolicy, QFileDialog, qApp
+    QSizePolicy, QFileDialog, qApp, QDesktopWidget, QPushButton
 
 
 class ImageConverter(QMainWindow):
@@ -26,6 +26,7 @@ class ImageConverter(QMainWindow):
         self.root = ''
         self._initMenu()
         self._initUI()
+        self._initPos()
 
     def _initMenu(self):
         self.menu = self.menuBar()
@@ -55,18 +56,26 @@ class ImageConverter(QMainWindow):
 
     def _initTab(self):
         self.wgTab = QWidget()
-        self.wgTab.setFixedHeight(20)
-        self.wgTab.setStyleSheet("background: #99FF99")
+        self.wgTab.setFixedHeight(30)
+        # self.wgTab.setStyleSheet("background: #99FF99")
         hlayTab = QHBoxLayout(self.wgTab)
+        hlayTab.addStretch(1)
         hlayTab.setContentsMargins(0, 0, 0, 0)
+
+    def _initPos(self):
+        uiFrame = self.frameGeometry()
+        centerPos = QDesktopWidget().availableGeometry().center()
+        uiFrame.moveCenter(centerPos)
+        self.move(100, 100)
 
     def slotImportImg(self):
         if self.root != '':
             self.cwd = self.root
-        path, type = QFileDialog.getOpenFileName(self, '选择图片', self.cwd, '*.jpg;*.png;*.bmp')
+        path, type = QFileDialog.getOpenFileName(self, '选择图片', self.cwd, '*.jpg;*.jpeg;*.png;*.bmp')
         self.root = os.path.split(path)[0]
         if os.path.exists(path):
             self.slotOpenImage(path)
+            self.slotAddTab(os.path.basename(path))
 
     def slotOutputImg(self):
         print('导出图片')
@@ -113,6 +122,38 @@ class ImageConverter(QMainWindow):
 
         scaleImg = QPixmap.fromImage(img.scaled(QSize(int(img_w * scale), int(img_h * scale)), Qt.IgnoreAspectRatio))
         self.labelShower.setPixmap(scaleImg)
+
+    def slotAddTab(self, imgName):
+        addLabel = TabLabel(imgName)
+        self.wgTab.layout().insertWidget(0, addLabel)
+
+
+class TabLabel(QLabel):
+    """
+    custom tab label: fixed size, with close button, emit closed signal
+    """
+    closedSignal = pyqtSignal(int)
+
+    def __init__(self, name):
+        super(TabLabel, self).__init__()
+        self.tabName = name
+        self._initUI()
+
+    def _initUI(self):
+        hlayLabel = QHBoxLayout()
+        labelContent = QLabel(self.tabName)
+        labelContent.setFixedSize(45, 25)
+        labelContent.setStyleSheet("background: #66CCFF; border-style: solid; font:12pt 'Arial';")
+        hlayLabel.addWidget(labelContent)
+        hlayLabel.addStretch(1)
+        butClose = QPushButton()
+        butClose.clicked.connect(self.slotEmitCloseSignal)
+        butClose.setStyleSheet("border-image: url(../../res/image/close.jpg)")
+        hlayLabel.addWidget(butClose)
+        self.setLayout(hlayLabel)
+
+    def slotEmitCloseSignal(self):
+        self.closedSignal.emit()
 
 
 class OpenImageCard(QLabel):

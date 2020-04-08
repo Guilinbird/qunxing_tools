@@ -3,12 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f6e45e13-9424-4708-8e28-9483bb31b5db" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/imageIntro_uploader/db/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/imageIntro_uploader/db/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/imageIntro_uploader/handler/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/imageIntro_uploader/handler/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/imageIntro_uploader/ui/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/imageIntro_uploader/ui/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/imageIntro_uploader/ui/ui_image_viewer.py" beforeDir="false" afterPath="$PROJECT_DIR$/imageIntro_uploader/ui/ui_image_viewer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/imageIntro_uploader/ui/ui_progressbar.py" beforeDir="false" afterPath="$PROJECT_DIR$/imageIntro_uploader/ui/ui_progressbar.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/imageIntro_uploader/utils/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/imageIntro_uploader/utils/__init__.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -33,11 +28,12 @@
   <component name="PropertiesComponent">
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="D:/pro_learn/EduDo/zhuoman/code_3_h5preview/deep5-theme-h5py-viewer-qt" />
-    <property name="settings.editor.selected.configurable" value="fileTemplates" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/res/image" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Guilinbird\qunxing_tools\res\image" />
       <recent name="D:\Guilinbird\qunxing_tools\imageIntro_uploader\db" />
       <recent name="D:\Guilinbird\qunxing_tools\imageIntro_uploader\handler" />
       <recent name="D:\Guilinbird\qunxing_tools\imageIntro_uploader\ui" />
@@ -97,7 +93,8 @@
       <workItem from="1586027905698" duration="3698000" />
       <workItem from="1586063755387" duration="13074000" />
       <workItem from="1586087315717" duration="1158000" />
-      <workItem from="1586272315641" duration="3774000" />
+      <workItem from="1586272315641" duration="3879000" />
+      <workItem from="1586357893190" duration="3853000" />
     </task>
     <task id="LOCAL-00001" summary="图片工具Gui结构设计">
       <created>1586031232159</created>
@@ -106,7 +103,14 @@
       <option name="project" value="LOCAL" />
       <updated>1586031232159</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="工具结构设计并搭建">
+      <created>1586276145441</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1586276145441</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -127,9 +131,26 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="图片工具Gui结构设计" />
-    <option name="LAST_COMMIT_MESSAGE" value="图片工具Gui结构设计" />
+    <MESSAGE value="工具结构设计并搭建" />
+    <option name="LAST_COMMIT_MESSAGE" value="工具结构设计并搭建" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/imageIntro_uploader/ui/ui_image_viewer.py</url>
+          <line>126</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="PythonConfigurationType">
+        <watch expression="uiFrame.topLeft()" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/qunxing_tools$ui_image_viewer.coverage" NAME="ui_image_viewer Coverage Results" MODIFIED="1586276040935" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/imageIntro_uploader/ui" />
+    <SUITE FILE_PATH="coverage/qunxing_tools$ui_image_viewer.coverage" NAME="ui_image_viewer Coverage Results" MODIFIED="1586361750817" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/imageIntro_uploader/ui" />
   </component>
 </project>
