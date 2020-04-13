@@ -4,6 +4,7 @@
     <list default="true" id="f6e45e13-9424-4708-8e28-9483bb31b5db" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/imageIntro_uploader/ui/ui_image_viewer.py" beforeDir="false" afterPath="$PROJECT_DIR$/imageIntro_uploader/ui/ui_image_viewer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/image/close.jpg" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -28,11 +29,12 @@
   <component name="PropertiesComponent">
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/res/image" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/test_data" />
+    <property name="settings.editor.selected.configurable" value="reference.idesettings.debugger.python" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Guilinbird\qunxing_tools\test_data" />
       <recent name="D:\Guilinbird\qunxing_tools\res\image" />
       <recent name="D:\Guilinbird\qunxing_tools\imageIntro_uploader\db" />
       <recent name="D:\Guilinbird\qunxing_tools\imageIntro_uploader\handler" />
@@ -94,7 +96,8 @@
       <workItem from="1586063755387" duration="13074000" />
       <workItem from="1586087315717" duration="1158000" />
       <workItem from="1586272315641" duration="3879000" />
-      <workItem from="1586357893190" duration="3853000" />
+      <workItem from="1586357893190" duration="3973000" />
+      <workItem from="1586785646284" duration="4740000" />
     </task>
     <task id="LOCAL-00001" summary="图片工具Gui结构设计">
       <created>1586031232159</created>
@@ -110,7 +113,14 @@
       <option name="project" value="LOCAL" />
       <updated>1586276145441</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="框架搭建">
+      <created>1586361808628</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1586361808628</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -132,15 +142,16 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="图片工具Gui结构设计" />
     <MESSAGE value="工具结构设计并搭建" />
-    <option name="LAST_COMMIT_MESSAGE" value="工具结构设计并搭建" />
+    <MESSAGE value="框架搭建" />
+    <option name="LAST_COMMIT_MESSAGE" value="框架搭建" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/imageIntro_uploader/ui/ui_image_viewer.py</url>
-          <line>126</line>
-          <option name="timeStamp" value="5" />
+          <line>129</line>
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -151,6 +162,6 @@
     </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/qunxing_tools$ui_image_viewer.coverage" NAME="ui_image_viewer Coverage Results" MODIFIED="1586361750817" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/imageIntro_uploader/ui" />
+    <SUITE FILE_PATH="coverage/qunxing_tools$ui_image_viewer.coverage" NAME="ui_image_viewer Coverage Results" MODIFIED="1586790374079" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/imageIntro_uploader/ui" />
   </component>
 </project>
